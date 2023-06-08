@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class TastModel(models.Model):
+    
+    task_text = models.TextField()
