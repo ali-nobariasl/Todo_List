@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import TastModel
 
@@ -9,3 +9,33 @@ def index(request):
     tm = TastModel.objects.all()
     context = {'tm':tm}
     return render(request,'main/index.html',context= context)
+
+
+def taskDone(request,pk):
+    
+    item = TastModel.objects.get(pk=pk)
+    item.completed = True
+    item.save()
+    return redirect('index')
+
+def taskUnDone(request,pk):
+    item = TastModel.objects.get(pk=pk)
+    item.completed = False
+    item.save()
+    return redirect('index')
+
+def deleteTast(request,pk):
+    item = TastModel.objects.get(pk=pk)
+    item.delete()
+    return redirect('index')
+
+def newTask(request):
+    
+    if request.method == 'POST':
+        task_text = request.POST.get('text')
+        if task_text:
+            item= TastModel.objects.create(task_text=task_text)
+            item.save()
+            print('saved')
+            
+    return redirect('index')
