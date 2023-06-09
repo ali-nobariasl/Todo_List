@@ -1,6 +1,6 @@
 from django.urls import path 
 
-from .views import index , taskDone ,newTask ,deleteTast ,taskUnDone
+from .views import index , taskDone ,newTask ,deleteTast ,taskUnDone,editTask
 
 
 
@@ -13,5 +13,6 @@ urlpatterns = [
     
     path('newTask/', newTask, name='newTask' ),
     path('deleteTast/<int:pk>', deleteTast, name='deleteTast' ),
-      
+    path('editTask/<int:pk>', editTask, name='editTask' ),
+    
 ]

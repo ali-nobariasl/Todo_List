@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 
 from .models import TastModel
-
+from .forms import TaskForm
 
 def index(request):
     
     
-    tm = TastModel.objects.all()
+    tm = TastModel.objects.all().order_by('modified_at')
     context = {'tm':tm}
     return render(request,'main/index.html',context= context)
 
@@ -39,3 +39,13 @@ def newTask(request):
             print('saved')
             
     return redirect('index')
+
+
+def editTask(request,pk):
+    
+    item = TastModel.objects.get(pk=pk)
+    form = TaskForm()
+    context = {'item':item}
+    print(item)
+    print(pk)
+    return render(request,'main/edit.html',context=context)
