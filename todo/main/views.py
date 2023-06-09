@@ -44,8 +44,14 @@ def newTask(request):
 def editTask(request,pk):
     
     item = TastModel.objects.get(pk=pk)
-    form = TaskForm()
+    
+    if request.method == 'POST':
+        new_text = request.POST.get('edit_task')
+        
+        if new_text !='':
+            item.task_text = new_text
+            item.save()
+            return redirect('index')
+    
     context = {'item':item}
-    print(item)
-    print(pk)
     return render(request,'main/edit.html',context=context)
