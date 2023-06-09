@@ -16,7 +16,7 @@
 
     <nav class="navbar" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{% url 'index' %}">
             <img src="static/images/todo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             Todo App
           </a>
@@ -25,17 +25,26 @@
 
     <body >
         <div class="container">
-            <h3 class="pt-3 pb-5 text-center"> Edit Task </h3>
-            <form method="post" action="" style="width:500px; margin:auto;">
-                {%  csrf_token  %}
-                <div class="form-group">
-                    <span style="display:flex;">
-                        <input type="text" value={{item.task_text}} name="edit_task"/>
-                        <button type="submit"> Update </button>
-                        
-                    </span>
-                </div>
-            </form>
+            <h3 class="pt-5 text-center"> Edit Task </h3>
+            <h4> My Day </h4>
+            <p class="text-muted">{% now "jS F Y" %}</p>
+            <hr>
+
+            <div class="col-md-7 col-lg-7  text-bg-info p-4 margin:center" >
+                <h5>Task:</h5>
+                <hr>
+                <form method="post" action="" style="width:500px; margin:auto;">
+                    {%  csrf_token  %}
+                    <div class="form-group">
+                        <span style="display:flex;">
+                            <input type="text" value={{item.task_text}} name="edit_task"/>
+                            <button type="submit"> Update </button>
+                            
+                        </span>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </body>
 </html>
