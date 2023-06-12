@@ -11,6 +11,13 @@ def index(request):
     return render(request,'main/index.html',context= context)
 
 
+def register(request):
+    
+    
+    context = {}
+    return render(request,'main/register.html',context=context)
+
+
 def taskDone(request,pk):
     
     item = TastModel.objects.get(pk=pk)
