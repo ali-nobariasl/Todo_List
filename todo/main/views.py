@@ -15,7 +15,7 @@ def register(request):
     
     
     context = {}
-    return render(request,'main/register.html',context=context)
+    return render(request,'main/base.html',context=context)
 
 
 def taskDone(request,pk):
